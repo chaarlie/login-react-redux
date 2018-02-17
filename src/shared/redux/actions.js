@@ -18,17 +18,15 @@ export const signInReqFail = error => ({
 export const signInAction = (credentials)  => async dispatch => {  
     try {
         const url = `http://178.62.101.205/auth/login`;
-        const data =  credentials;
+        const data =  JSON.stringify(credentials);
         const reqConfig = {
-            method: 'POST',
-            data,
             headers: {
-                'Content-Type': 'multipart/form-data;  boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
+                    'Content-Type': 'application/json'
             }
         };
         dispatch(signInReqStart());
-        const token = await axios.post(url, reqConfig);
-        dispatch(signInReqSuccess(token));
+        const request = await axios.post(url, data, reqConfig);
+        dispatch(signInReqSuccess(request.data.access_token));
     } catch (error) {
       console.error(error);
       dispatch(signInReqFail(error));

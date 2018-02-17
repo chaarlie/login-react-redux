@@ -7,7 +7,7 @@ export const loginActions = (state = {}, action) => {
           isFetching: true,
           token:'',
           errMsg: ''
-        }
+        };
       case 'SIGNIN_REQ_SUCCESS':
         return {
           isFetching: false,

@@ -28,12 +28,15 @@ class LoginForm extends React.Component {
     }
     componentWillReceiveProps(props) {  
         if(props.authReq) {
-            if(props.authReq.errMsg){
+            if(props.authReq.errMsg) {
                 this.setState({errMsg: props.authReq.errMsg});
                 this.setState({email:'', password:''});
             }
             this.setState({isFetching: props.authReq.isFetching});
             this.setState({loginHasError: !!props.authReq.errMsg});
+        }
+        if(props.authReq.token) {
+            console.log(props.authReq.token)
         }
     }
     signIn = (e) => {
@@ -41,14 +44,18 @@ class LoginForm extends React.Component {
             this.setState({
                 emptyFIelds: false, 
                 loginHasError: false
-            })
+            });
+            const credentials = {
+                email: this.state.email, 
+                password: this.state.password
+            };
 
-            this.props.signInAction(this.state);
+            this.props.signInAction(credentials);
 
             this.setState({
                 email: '',
                 password: ''
-            })
+            });
         }
         else {
             this.setState({emptyFIelds: true})
@@ -64,21 +71,16 @@ class LoginForm extends React.Component {
                 icon={<FontIcon className="fa fa-facebook-f" />}
                 backgroundColor='#3F51B5'
                 buttonStyle = {styles.buttonStyles}
-           
                 />
-
                 <RaisedButton
- 
                 label="LOGIN WITH TWITTER"
                 labelColor="#F5F5F5"
                 style={styles.buttonSpacingStyles.button}
                 icon={<FontIcon className="fa fa-twitter" />}
                 backgroundColor='#82B1FF'
                 buttonStyle = {styles.buttonStyles}
-            
                 />
                 <RaisedButton
-                href="https://github.com/callemall/material-ui"
                 label="LOGIN WITH GOOGLE"
                 labelColor="#F5F5F5"
                 style={styles.buttonSpacingStyles.button}
@@ -120,32 +122,29 @@ class LoginForm extends React.Component {
                         <div></div> 
                     }
                 <br/>
-                
-                <div> 
-                    <div style={styles.companyInfoStyles}>
-                        <Checkbox name="keep-signed-in" label="KEEP ME SIGNED IN" labelStyle={{marginLeft:'-21%'}} style={{marginLeft:'-5%'}}  iconStyle={{  fill: '#E91E63',}}/>
-                        <label style={{color:'#E91E63'}} htmlFor="keep-signed-in">FORGOT PASSWORD?</label>
-                    </div>
-                    <br/>
-                    <br/>
-                    <RaisedButton
-                    label="LOGIN NOW"
-                    labelColor="#F5F5F5"
-                    style={styles.buttonSpacingStyles.button}
-                    icon={<FontIcon className="fa fa-lock" />}
-                    backgroundColor='#424242'
-                    buttonStyle = {styles.buttonStyles}
-                    onClick={this.signIn}
-                    disabled={this.state.isFetching}
-                    />
-                    <br/>
-                    <br/>
-                    <div style={styles.companyInfoStyles}>
-                    <span  style={{marginLeft:'-5%', paddingRight:'5%'}} > DON'T HAVE AN ACCOUNT?</span>
-                        <span style={{color:'#E91E63'}}   >REGISTER NOW</span>
-                    </div>
+        
+                <div style={styles.companyInfoStyles}>
+                    <Checkbox name="keep-signed-in" label="KEEP ME SIGNED IN" labelStyle={{marginLeft:'-21%'}} style={{marginLeft:'-5%'}}  iconStyle={{  fill: '#E91E63',}}/>
+                    <label style={{color:'#E91E63'}} htmlFor="keep-signed-in">FORGOT PASSWORD?</label>
                 </div>
-            
+                <br/>
+                <br/>
+                <RaisedButton
+                label="LOGIN NOW"
+                labelColor="#F5F5F5"
+                style={styles.buttonSpacingStyles.button}
+                icon={<FontIcon className="fa fa-lock" />}
+                backgroundColor='#424242'
+                buttonStyle = {styles.buttonStyles}
+                onClick={this.signIn}
+                disabled={this.state.isFetching}
+                />
+                <br/>
+                <br/>
+                <div style={styles.companyInfoStyles}>
+                    <span  style={{marginLeft:'-5%', paddingRight:'5%'}} > DON'T HAVE AN ACCOUNT?</span>
+                    <span style={{color:'#E91E63'}}   >REGISTER NOW</span>
+                </div>
             </div>    
         )
     }
