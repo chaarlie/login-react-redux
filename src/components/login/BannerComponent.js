@@ -2,9 +2,9 @@ import React from 'react';
 
 import Divider from 'material-ui/Divider';
 
-import styles from './styles';
+import styles from './styles/bannerComponentStyles';
 
-const CompanyBanner = () => {
+const BannerComponent = () => {
   return (
     <div  style={styles.indexBannerStyles}>
         <div>
@@ -33,4 +33,4 @@ const CompanyBanner = () => {
   );
 }
 
-export default CompanyBanner;
+export default BannerComponent;

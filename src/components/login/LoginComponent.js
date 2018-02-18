@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {withRouter} from 'react-router-dom';
+
 import TextField from 'material-ui/TextField';
 import Checkbox from 'material-ui/Checkbox';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -7,14 +9,15 @@ import FontIcon from 'material-ui/FontIcon';
 
 import { connect } from 'react-redux';
 
-import { signInAction } from '../../shared/redux/actions';
+import { signInAction } from '../../state/actions';
 
-import styles from './styles';
+import styles from './styles/loginFormStyles';
+
+import CustomDividerComponent from './CustomDividerComponent';
 
 class LoginForm extends React.Component {
     constructor(props){
-        super(props)
-
+        super(props);
         this.state = {
             email: '',
             password: '',
@@ -23,9 +26,9 @@ class LoginForm extends React.Component {
             errMsg: '',
             emptyFIelds: false
         };
-
         this.signIn.bind(this);
     }
+
     componentWillReceiveProps(props) {  
         if(props.authReq) {
             if(props.authReq.errMsg) {
@@ -35,10 +38,11 @@ class LoginForm extends React.Component {
             this.setState({isFetching: props.authReq.isFetching});
             this.setState({loginHasError: !!props.authReq.errMsg});
         }
-        if(props.authReq.token) {
-            console.log(props.authReq.token)
+        if(props.authReq.payload.access_token) {
+            this.props.history.push('/dashboard');
         }
     }
+    
     signIn = (e) => {
         if(this.state.email && this.state.password) {
             this.setState({
@@ -88,13 +92,9 @@ class LoginForm extends React.Component {
                 backgroundColor='#F44336'
                 buttonStyle = {styles.buttonStyles}
                 /> 
-                <div style={{listStyleType:'none' }}> 
-                    <div style={styles.sectionTitleContainerStyles}>
-                        <p style={styles.sectionTitleStyles}>
-                            OR
-                        </p>
-                    </div>
-                </div>
+                
+                <CustomDividerComponent text='or' />
+
                 <TextField
                 hintText="Email"
                 floatingLabelText="Email"
@@ -152,6 +152,6 @@ class LoginForm extends React.Component {
 
 const mapStateToProps = (state) => ({ authReq: state.loginActions });
 const mapDispatchToProps = {signInAction};
-const CompanyLoginForm = connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+const LoginFormComponent = connect(mapStateToProps, mapDispatchToProps)(LoginForm);
 
-export default CompanyLoginForm;
+export default withRouter(LoginFormComponent);

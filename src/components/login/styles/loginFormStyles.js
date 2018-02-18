@@ -3,15 +3,11 @@ const buttonSpacingStyles = {
     margin: 12
   }
 };
-
 const companyInfoStyles= {
     display:'flex',
     flexFlow:'row no-wrap',
- 
     fontSize:'75%'
-  }
-
-
+};
 const loginFormStyles = {
     display: 'flex',
     flexFlow:'column wrap',
@@ -20,20 +16,17 @@ const loginFormStyles = {
     textAlign:'center',
     backgroundColor:'white'
 };
- 
 const buttonStyles = {
     marginTop: '-14px',
     padding: '0px 30px 0px 30px'
-}
-
+};
 const sectionTitleContainerStyles = {
     width: '100%',
     height: '20px',
     borderTop: '1px solid #BDBDBD',
     textAlign:'center',
     marginTop: '40px'
-}
-
+};
 const sectionTitleStyles = {
     fontWeight:'bold',
     marginTop: '-10px',
@@ -42,7 +35,7 @@ const sectionTitleStyles = {
     marginLeft: '90px',
     color: '#BDBDBD'
  
-}
+};
 
 export default {
     buttonSpacingStyles,

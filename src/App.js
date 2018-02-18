@@ -2,30 +2,14 @@ import React from 'react';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import CompanyBanner from './components/CompanyBanner/CompanyBanner';
-import CompanyLoginForm from './components/CompanyLoginForm/CompanyLoginForm';
- 
-const containerStyles = {
-  display: 'flex',
-  flexFlow: 'row wrap',
-  justifyContent: 'center',
-} 
+import AppContainerComponent from './components/app-container/AppContainerComponent';
 
-const AppContainer = () => {
-  return(
-    <div style={containerStyles}>
-      <CompanyBanner />
-      <CompanyLoginForm />
-    </div>
-  )
-}
 const App = () => (
-  <div  > 
+  <div> 
     <MuiThemeProvider>
-      <AppContainer />
+      <AppContainerComponent />
     </MuiThemeProvider>
   </div>
 );
-
 
 export default App;
