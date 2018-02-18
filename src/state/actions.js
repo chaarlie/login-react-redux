@@ -26,7 +26,7 @@ export const logoutReqStart = () => ({
 
 export const signInAction = (credentials)  => async dispatch => {  
     try {
-        const url = `https://178.62.101.205/auth/login`;
+        const url = `http://178.62.101.205/auth/login`;
         const data =  JSON.stringify(credentials);
         const reqConfig = {
             headers: {
