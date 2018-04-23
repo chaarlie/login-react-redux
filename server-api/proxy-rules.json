@@ -1,0 +1,10 @@
+{
+    "rules": [
+        {
+            "pathname": "/users", "method": "GET", "dest": "http://localhost:5001"
+        },
+        {
+            "pathname": "/authenticate/login", "method": "POST", "dest": "http://localhost:5000"
+        }
+    ]
+}

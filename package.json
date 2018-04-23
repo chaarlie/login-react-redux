@@ -2,6 +2,7 @@
   "name": "test",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:9000",
   "homepage": "http://chaarlie.github.io/login-react-redux",
   "dependencies": {
     "axios": "^0.17.1",

@@ -17,6 +17,7 @@ import MembersComponent from '..//members/MembersComponent';
 import LogoutComponent from '..//logout/LogoutComponent';
 import HomeComponent from '../home/HomeComponent';
 import NoMatchComponent from '../no-match/NoMatchComponent';
+import RegisterComponent from '../register/RegisterComponent';
 
 class  Container extends React.Component {
     constructor(){
@@ -31,7 +32,7 @@ class  Container extends React.Component {
       this.setState({toggleNav: !this.state.toggleNav})
     }
     componentWillReceiveProps(props) {  
-      this.setState({isAuthenticated: !!props.authReq.payload.access_token});
+      this.setState({isAuthenticated: !!props.authReq.payload.token});
     }
     render() {
       return (
@@ -48,7 +49,12 @@ class  Container extends React.Component {
             <div>
               <Drawer open={this.state.toggleNav} containerStyle={{height: '90%', top:'10%'}}>
                 <Link to={`/home`}>   <MenuItem >Home</MenuItem></Link>
-                { !this.state.isAuthenticated && <Link to={`/login`}>   <MenuItem>Login</MenuItem></Link>}
+                { !this.state.isAuthenticated && 
+                  <span>
+                    <Link to={`/login`}>   <MenuItem>Login</MenuItem></Link>
+                    <Link to={`/register`}>   <MenuItem>Register</MenuItem></Link>
+                  </span>
+                }
                 { this.state.isAuthenticated && 
                   <span>
                     <Link to={`/dashboard`}>   <MenuItem>Members Dashboard</MenuItem></Link>
@@ -73,6 +79,7 @@ class  Container extends React.Component {
               />
               <Route path="/home" component={HomeComponent}/>
               <Route path="/logout" component={LogoutComponent}/>
+              <Route path="/register" component={RegisterComponent}/>
               <Route   component={NoMatchComponent} />
             </Switch>
             </div>

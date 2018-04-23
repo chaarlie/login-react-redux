@@ -38,7 +38,7 @@ class LoginForm extends React.Component {
             this.setState({isFetching: props.authReq.isFetching});
             this.setState({loginHasError: !!props.authReq.errMsg});
         }
-        if(props.authReq.payload.access_token) {
+        if(props.authReq.payload.token) {
             this.props.history.push('/dashboard');
         }
     }
@@ -50,8 +50,10 @@ class LoginForm extends React.Component {
                 loginHasError: false
             });
             const credentials = {
-                email: this.state.email, 
-                password: this.state.password
+                credentials: {
+                    username: this.state.email, 
+                    password: this.state.password
+                }
             };
 
             this.props.signInAction(credentials);
