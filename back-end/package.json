@@ -1,0 +1,41 @@
+{
+  "name": "server-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "auth": "micro -p 5000 ./src/services/auth/index.js",
+    "user": "micro -p 5001 ./src/services/user/index.js",
+    "auth-dev": "webpack --mode development && micro-dev -p 5000 ./src/services/auth/index.js",
+    "user-dev": "webpack --mode development && micro-dev -p 5001 ./src/services/user/index.js",
+    "item-dev": "webpack --mode development && micro-dev -p 5002 ./src/services/item/index.js",
+    "user-role": "node ./src/message-queue/roleServer.js",
+    "start": "start npm run auth && start npm run user && start npm run user-role ",
+    "dev": "start npm run item-dev && start npm run auth-dev && start npm run user-dev && start npm run user-role && start micro-proxy -r proxy-rules.json -p 9000"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "micro-dev": "^2.2.2",
+    "webpack": "^4.5.0",
+    "webpack-cli": "^2.0.14"
+  },
+  "dependencies": {
+    "amqplib": "^0.5.2",
+    "bcryptjs": "^2.4.3",
+    "bookshelf": "^0.13.3",
+    "faker": "^4.1.0",
+    "jsonwebtoken": "^8.2.1",
+    "knex": "^0.14.6",
+    "micro": "^9.1.4",
+    "micro-middleware": "^0.1.0",
+    "micro-proxy": "^1.1.0",
+    "microrouter": "^3.1.2",
+    "mongoose": "^5.0.14",
+    "mysql": "^2.15.0"
+  }
+}

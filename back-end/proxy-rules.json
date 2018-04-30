@@ -1,0 +1,14 @@
+{
+    "rules": [
+        
+        {
+            "pathname": "/items", "method": ["GET", "POST"], "dest": "http://localhost:5002"
+        },
+        {
+            "pathname": "/users", "method": "GET", "dest": "http://localhost:5001"
+        },
+        {
+            "pathname": "/authenticate/login", "method": "POST", "dest": "http://localhost:5000"
+        }
+    ]
+}
